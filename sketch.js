@@ -1,13 +1,18 @@
+let imagenesn, imagenesr;
 
 function setup() {
   createCanvas(500, 600);
-  Imagenesn = new Imagenesn(100, 50, 300, 400);
-  Imagenesr = new Imagenesr(100, 470, 50, 60);
+  imagenesn = new Imagenesn(100, 50, 300, 400, 0);
+  imagenesr = new Imagenesr(100, 470, 50, 60);
 }
 
 function draw() {
   background(220);
-  Imagenesn.dibujar();
-  Imagenesr.dibujar();
-  this.Imagenesn.teclapresionada (RIGHT_ARROW);
+  imagenesn.dibujar();
+  imagenesr.dibujar();
+}
+
+function keyPressed() {
+  imagenesn.teclapresionada();
+  imagenesr.teclapresionada();
 }
