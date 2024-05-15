@@ -1,13 +1,11 @@
-
-
 class Imagenesr {
   constructor(xr, yr, anr, alr) {
-    this.load();
     this.xr = xr;
-    this.yr = yr; 
+    this.yr = yr;
     this.anr = anr;
     this.alr = alr;
-    this.num = 0; // Inicializa la variable num para el índice de la imagen
+    this.num = 0;
+    this.load();
   }
 
   load() {
@@ -18,13 +16,14 @@ class Imagenesr {
   }
 
   dibujar() {
-    image(this.imagenesr[this.num], this.xr, this.yr, this.anr, this.alr);
+    image(this.imagenesr[2], this.xr, this.yr, this.anr, this.alr);
   }
 
-  teclaPresionada(keyCode) {
-    // En este caso, asumo que también quieres cambiar la imagen en Imagenesr al presionar la tecla derecha.
-    if (keyCode === RIGHT_ARROW) {
-      this.num = (this.num + 1) % this.imagenesr.length; // Cambia al siguiente índice de imagen
+  teclapresionada (keyCode) {
+    if (keyIsDown (RIGHT_ARROW)) {
+      this.num ++;
+      this.num %= this.imagenesr.length; 
     }
+
   }
 }
