@@ -1,30 +1,30 @@
-class Imagenesn{
-constructor (xr,yr,xn,yn,anr,ann,alr,aln){
-    this.load ();
-    this.dibujar ();
-    this.xr= xr;
-    this.yr= yr; 
-    this.xn= xn; 
-    this.yn= yn;
-    this.anr= anr;
-    this.ann= ann;
-    this.alr= alr;
-    this.aln= aln;
-    this.num;
-}
- load(){
-    this.imagenes = [];
-    for (let i = 0; i < 29; i++) {
-      this.imagenes[i] = loadImage ("data/img" + i + ".png");
+
+
+class Imagenesr {
+  constructor(xr, yr, anr, alr) {
+    this.load();
+    this.xr = xr;
+    this.yr = yr; 
+    this.anr = anr;
+    this.alr = alr;
+    this.num = 0; // Inicializa la variable num para el índice de la imagen
+  }
+
+  load() {
+    this.imagenesr = [];
+    for (let i = 0; i < 9; i++) {
+      this.imagenesr[i] = loadImage("data/roja" + i + ".png");
     }
- }
- dibujar(){
-    image (this.imagenes[this.num],this.xn,this.yn,this.ann,this.aln);
-    image (this.imagenes[13],this.xr,this.yr,this.anr,this.alr);
- }
- teclaPresionada (keyCode) {
-   if (keyIsDown (RIGHT_ARROW)) {
-     this.num ++;
-   }
-}
+  }
+
+  dibujar() {
+    image(this.imagenesr[this.num], this.xr, this.yr, this.anr, this.alr);
+  }
+
+  teclaPresionada(keyCode) {
+    // En este caso, asumo que también quieres cambiar la imagen en Imagenesr al presionar la tecla derecha.
+    if (keyCode === RIGHT_ARROW) {
+      this.num = (this.num + 1) % this.imagenesr.length; // Cambia al siguiente índice de imagen
+    }
+  }
 }
