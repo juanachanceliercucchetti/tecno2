@@ -5,6 +5,7 @@ class Imagenesr {
     this.anr = anr;
     this.alr = alr;
     this.num = 0;
+    this.op = 255;
     this.load();
   }
 
@@ -16,14 +17,29 @@ class Imagenesr {
   }
 
   dibujar() {
-    image(this.imagenesr[2], this.xr, this.yr, this.anr, this.alr);
+    tint(255, this.op);
+    image(this.imagenesr[this.num], this.xr, this.yr, this.anr, this.alr);
+    noTint();
   }
 
-  teclapresionada (keyCode) {
-    if (keyIsDown (RIGHT_ARROW)) {
-      this.num ++;
-      this.num %= this.imagenesr.length; 
+  teclapresionada() {
+    if (keyIsDown(UP_ARROW)) {
+      this.num++;
+      this.num %= this.imagenesr.length;
     }
-
+    if (keyIsDown(DOWN_ARROW)) {
+      this.num--;
+      if (this.num < 0) {
+        this.num = 0;
+      }
+    }
+    
+    if (keyIsDown(87)){
+      this.op = min(this.op + 20, 255);
+    }
+    
+    if (keyIsDown(83)){
+      this.op = max(this.op - 20, 0);
+    }
   }
 }
