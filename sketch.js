@@ -1,18 +1,28 @@
-let imagenesn, imagenesr;
+let imagenesn = [];
+let imagenesr = [];
+
+function preload() {
+  for (let i = 0; i < 12; i++) {
+    imagenesn[i] = loadImage("data/img" + i + ".png");
+  }
+  for (let i = 0; i < 9; i++) {
+    imagenesr[i] = loadImage("data/roja" + i + ".png");
+  }
+}
 
 function setup() {
   createCanvas(500, 600);
-  imagenesn = new Imagenesn(100, 50, 300, 400, 0);
-  imagenesr = new Imagenesr(100, 470, 50, 60);
+  imagenesnObj = new Imagenesn(100, 50, 300, 400, 0);
+  imagenesrObj = new Imagenesr(100, 470, 50, 60);
 }
 
 function draw() {
   background(220);
-  imagenesn.dibujar();
-  imagenesr.dibujar();
+  imagenesnObj.dibujar();
+  imagenesrObj.dibujar();
 }
 
 function keyPressed() {
-  imagenesn.teclapresionada();
-  imagenesr.teclapresionada();
+  imagenesnObj.teclapresionada();
+  imagenesrObj.teclapresionada();
 }
