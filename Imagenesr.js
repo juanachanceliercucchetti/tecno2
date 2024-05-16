@@ -6,31 +6,23 @@ class Imagenesr {
     this.alr = alr;
     this.num = 0;
     this.op = 255;
-    this.load();
-  }
-
-  load() {
-    this.imagenesr = [];
-    for (let i = 0; i < 9; i++) {
-      this.imagenesr[i] = loadImage("data/roja" + i + ".png");
-    }
   }
 
   dibujar() {
     tint(255, this.op);
-    image(this.imagenesr[this.num], this.xr, this.yr, this.anr, this.alr);
+    image(imagenesr[this.num], this.xr, this.yr, this.anr, this.alr);
     noTint();
   }
 
   teclapresionada() {
     if (keyIsDown(UP_ARROW)) {
       this.num++;
-      this.num %= this.imagenesr.length;
+      this.num %= imagenesr.length;
     }
     if (keyIsDown(DOWN_ARROW)) {
       this.num--;
       if (this.num < 0) {
-        this.num = 0;
+        this.num = imagenesr.length - 1;
       }
     }
     
