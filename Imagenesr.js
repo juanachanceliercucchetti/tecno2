@@ -17,13 +17,17 @@ class Imagenesr {
   teclapresionada() {
     if (keyIsDown(UP_ARROW)) {
       this.num++;
+      this.anr+=10;
       this.num %= imagenesr.length;
+      this.anr = anchosRojas[this.num]; 
     }
     if (keyIsDown(DOWN_ARROW)) {
       this.num--;
+      this.anr-=10;
       if (this.num < 0) {
         this.num = imagenesr.length - 1;
       }
+      this.anr = anchosRojas[this.num]; 
     }
     
     if (keyIsDown(87)){

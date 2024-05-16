@@ -1,3 +1,7 @@
 canvas {
   display: block;
+  margin: auto;
+}
+html{
+  background-color: red;
 }
