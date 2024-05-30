@@ -7,15 +7,14 @@ class Imagenesn {
     this.num = num;
     this.numAnterior = num;
     this.op = 255;
-    this.opCamibio = 1;
+    this.opCambio = 1;
   }
 
   dibujar() {
-    this.opCamibio = lerp(this.opCamibio,1,0.1);
-
-    tint(255, this.op*this.opCamibio);
+    this.opCambio = lerp(this.opCambio,1,0.1);
+    tint(255, this.op*this.opCambio);
     image(imagenesn[this.num], this.xn, this.yn, this.ann, this.aln);
-    tint(255, this.op*(1-this.opCamibio));
+    tint(255, this.op*(1-this.opCambio));
     image(imagenesn[this.numAnterior], this.xn, this.yn, this.ann, this.aln);
     noTint();
   }
@@ -25,7 +24,7 @@ class Imagenesn {
       this.numAnterior = this.num;
       this.num++;
       this.num %= imagenesn.length;
-      this.opCamibio = 0;
+      this.opCambio = 0;
     }
     
     if (keyIsDown(LEFT_ARROW)) {
@@ -34,7 +33,7 @@ class Imagenesn {
       if (this.num < 0) {
         this.num = imagenesn.length - 1;
       }
-      this.opCamibio = 0;
+      this.opCambio = 0;
     }
     
     if (keyIsDown(68)) {

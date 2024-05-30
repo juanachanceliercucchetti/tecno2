@@ -6,10 +6,12 @@ class Imagenesr {
     this.alr = alr;
     this.num = 0;
     this.op = 255;
+    this.opCambio = 1;
   }
 
   dibujar() {
-    tint(255, this.op);
+    this.opCambio = lerp(this.opCambio,1,0.1);
+    tint(255, this.op*this.opCambio);
     image(imagenesr[this.num], this.xr, this.yr, this.anr, this.alr);
     noTint();
   }
@@ -20,12 +22,15 @@ class Imagenesr {
       this.anr+=10;
       this.num %= imagenesr.length;
       this.anr = anchosRojas[this.num]; 
+      this.opCambio = 0;
     }
     if (keyIsDown(DOWN_ARROW)) {
       this.num--;
       this.anr-=10;
+      this.opCambio = 0;
       if (this.num < 0) {
         this.num = imagenesr.length - 1;
+        
       }
       this.anr = anchosRojas[this.num]; 
     }
