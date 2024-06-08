@@ -15,8 +15,7 @@ class Imagenesr {
     tint(255, this.op * this.opCambio);
     image(imagenesr[this.num], this.xr, this.yr, this.anr, this.alr);
     noTint();
-  }
-  
+  }  
   
   mover(){
     this.num++;
