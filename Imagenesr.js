@@ -5,8 +5,10 @@ class Imagenesr {
     this.anr = anr;
     this.alr = alr;
     this.num = 0;
+    this.vel = 0;
     this.op = 255;
     this.opCambio = 1;
+
   }
 
   dibujar() {
@@ -15,8 +17,22 @@ class Imagenesr {
     image(imagenesr[this.num], this.xr, this.yr, this.anr, this.alr);
     noTint();
   }
-
-  teclapresionada() {
+  
+  mover(){
+    this.num++;
+    this.anr+=10;
+    this.num %= imagenesr.length;
+    this.anr = anchosRojas[this.num]; 
+    this.opCambio = 0;
+  }
+  opacidadAlta (){
+    this.op = max(this.op - 20, 0);
+  }
+  
+  opacidadBaja(){
+    this.op = min(this.op + 20, 255);
+  }
+ /* teclapresionada() {
     if (keyIsDown(UP_ARROW)) {
       this.num++;
       this.anr+=10;
@@ -42,5 +58,5 @@ class Imagenesr {
     if (keyIsDown(83)){
       this.op = max(this.op - 20, 0);
     }
-  }
+  }*/
 }

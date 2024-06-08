@@ -18,16 +18,23 @@ class Imagenesn {
     image(imagenesn[this.numAnterior], this.xn, this.yn, this.ann, this.aln);
     noTint();
   }
-
-  teclapresionada() {
-    if (keyIsDown(RIGHT_ARROW)) {
-      this.numAnterior = this.num;
+  mover(){
+    this.numAnterior = this.num;
       this.num++;
       this.num %= imagenesn.length;
       this.opCambio = 0;
-    }
+  }
+  opacidadAlta (){
+    this.op = max(this.op - 20, 0);
+  }
+  
+  opacidadBaja(){
+    this.op = min(this.op + 20, 255);
+  }
+
+  
     
-    if (keyIsDown(LEFT_ARROW)) {
+    /*if (keyIsDown(LEFT_ARROW)) {
       this.numAnterior = this.num;
       this.num--;
       if (this.num < 0) {
@@ -35,13 +42,7 @@ class Imagenesn {
       }
       this.opCambio = 0;
     }
-    
-    if (keyIsDown(68)) {
-      this.op = min(this.op + 20, 255);
-    }
-    
-    if (keyIsDown(65)) {
-      this.op = max(this.op - 20, 0);
-    }
+    */
+
   }
-}
+
