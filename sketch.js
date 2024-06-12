@@ -60,11 +60,11 @@ function draw() {
   amp = mic.getLevel(); // Actualización de la amplitud del micrófono
 
   if (SonidoGrave && cambioContadorR <= 0 && !SonidoAgudo) { //verifica si hay un sonido grave y si el contador de cambio para imagenesrObj es menor o igual a 0. También se asegura de que no haya un sonido agudo en ese momento para evitar que ambas condiciones se cumplan al mismo tiempo.
-    imagenesrObj.mover();
+    imagenesnObj.mover();
     cambioContadorR = cambioIntervalo;
   } else if (SonidoAgudo && cambioContadorN <= 0 && !SonidoGrave) {
     if (mostrarImagenesn1) {
-      imagenesnObj.mover();
+      imagenesrObj.mover();
       if (imagenesnObj.num === 0) { //cambia a imagenesn2 cuando imagenesn1 termina
         mostrarImagenesn1 = false;
       }
