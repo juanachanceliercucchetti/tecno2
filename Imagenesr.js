@@ -31,31 +31,5 @@ class Imagenesr {
   opacidadBaja(){
     this.op = max(this.op - 5, 0); // Reduce la opacidad  cuando no hay sonido
   }
- /* teclapresionada() {
-    if (keyIsDown(UP_ARROW)) {
-      this.num++;
-      this.anr+=10;
-      this.num %= imagenesr.length;
-      this.anr = anchosRojas[this.num]; 
-      this.opCambio = 0;
-    }
-    if (keyIsDown(DOWN_ARROW)) {
-      this.num--;
-      this.anr-=10;
-      this.opCambio = 0;
-      if (this.num < 0) {
-        this.num = imagenesr.length - 1;
-        
-      }
-      this.anr = anchosRojas[this.num]; 
-    }
-    
-    if (keyIsDown(87)){
-      this.op = min(this.op + 20, 255);
-    }
-    
-    if (keyIsDown(83)){
-      this.op = max(this.op - 20, 0);
-    }
-  }*/
+
 }

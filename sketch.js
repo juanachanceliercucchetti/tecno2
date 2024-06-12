@@ -1,7 +1,7 @@
 //---- CALIBRACION----
-let AMP_MIN = 0.01;
+let AMP_MIN = 0.03;
 let AMP_MED = 0.15;
-let AMP_MAX = 0.3;
+let AMP_MAX = 0.35;
 /*
 let FREC_MIN = 125;
 let FREC_MAX = 270; */
@@ -16,13 +16,13 @@ let anchosRojas = [50, 60, 70, 100, 140, 180, 240, 260, 280];
 
 //-----------
 // Temporizadores para controlar la velocidad de cambio
-let cambioIntervalo = 30; // Cambiar imagen cada 30 cuadros
+let cambioIntervalo = 60; // Cambiar imagen cada 30 cuadros
 let cambioContadorN = 0;
 let cambioContadorR = 0;
 
 function preload() {
-  for (let i = 0; i < 12; i++) {
-    imagenesn[i] = loadImage("data/img" + i + ".png");
+  for (let i = 0; i < 35; i++) {
+    imagenesn[i] = loadImage("data/sprites-obra" + i + ".png");
   }
   for (let i = 0; i < 9; i++) {
     imagenesr[i] = loadImage("data/roja" + i + ".png");
@@ -31,7 +31,7 @@ function preload() {
 
 function setup() {
   createCanvas(500, 600);
-  imagenesnObj = new Imagenesn(100, 50, 300, 400, 0);
+  imagenesnObj = new Imagenesn(0, 0, width, 600, 0);
   imagenesrObj = new Imagenesr(100, 470, anchosRojas[0], 60);
   userStartAudio(); // forzar el inicio del audio en el navegador
   mic = new p5.AudioIn();
@@ -88,7 +88,3 @@ function keyPressed() {
   imagenesnObj.teclapresionada();
   imagenesrObj.teclapresionada();
 }
-
-
-
-

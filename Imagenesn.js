@@ -32,17 +32,5 @@ class Imagenesn {
     this.op = min(this.op + 20, 255);
   }
 
-  
-    
-    /*if (keyIsDown(LEFT_ARROW)) {
-      this.numAnterior = this.num;
-      this.num--;
-      if (this.num < 0) {
-        this.num = imagenesn.length - 1;
-      }
-      this.opCambio = 0;
-    }
-    */
-
   }
 
