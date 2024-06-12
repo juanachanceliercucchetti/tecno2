@@ -18,20 +18,21 @@ class Imagenesn1 {
     image(imagenesn[this.numAnterior], this.xn, this.yn, this.ann, this.aln);
     noTint();
   }
-  mover(){
+
+  mover() {
     this.numAnterior = this.num;
-      this.num++;
-      this.num %= imagenesn.length;
-      this.opCambio = 0;
+    this.num++;
+    this.num %= imagenesn.length;
+    this.opCambio = 0;
   }
 
-  opacidadAlta (){
-    this.op = 255; // la opacidad a 255 cuando hay sonido
-  }
-  
-  opacidadBaja(){
-    this.op = max(this.op - 5, 0); // Reduce la opacidad  cuando no hay sonido
+  opacidadAlta() {
+    this.op = 255;
   }
 
+  opacidadBaja() {
+    this.op = max(this.op - 5, 0);
   }
+}
+
 

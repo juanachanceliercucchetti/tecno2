@@ -1,34 +1,35 @@
 class Imagenesr2 {
-  constructor(xr, yr, anr, alr) {
-    this.xr = xr;
-    this.yr = yr;
-    this.anr = anr;
-    this.alr = alr;
-    this.num = 0;
-    this.op = 0;
-    this.opCambio = 1;
-
-  }
-
-  dibujar() {
-    this.opCambio = lerp(this.opCambio, 1, 0.1); // Uso de lerp para suavizar el cambio de opacidad
-    tint(255, this.op * this.opCambio);
-    image(imagenesr2[this.num], this.xr, this.yr, this.anr, this.alr);
-    noTint();
-  }  
+    constructor(xn, yn, ann, aln, num) {
+        this.xn = xn;
+        this.yn = yn;
+        this.ann = ann;
+        this.aln = aln;
+        this.num = num;
+        this.numAnterior = num;
+        this.op = 0;
+        this.opCambio = 1;
+      }
+    
+    dibujar() {
+        this.opCambio = lerp(this.opCambio,1,0.1);
+        tint(255, this.op*this.opCambio);
+        image(imagenesr2[this.num], this.xn, this.yn, this.ann, this.aln);
+        tint(255, this.op*(1-this.opCambio));
+        image(imagenesr2[this.numAnterior], this.xn, this.yn, this.ann, this.aln);
+        noTint();
+    }
   
-  mover(){
-    this.num++;
-    this.anr+=10;
-    this.num %= imagenesr.length;
-    this.opCambio = 0;
+    mover() {
+        this.numAnterior = this.num;
+        this.num++;
+        this.num %= imagenesr2.length;
+        this.opCambio = 0;
+      }
+    opacidadAlta() {
+        this.op = 255;
+    }
+    
+    opacidadBaja() {
+        this.op = max(this.op - 5, 0);
+    }
   }
-  opacidadAlta (){
-    this.op = 255; // la opacidad a 255 cuando hay sonido
-  }
-  
-  opacidadBaja(){
-    this.op = max(this.op - 5, 0); // Reduce la opacidad  cuando no hay sonido
-  }
-
-}
