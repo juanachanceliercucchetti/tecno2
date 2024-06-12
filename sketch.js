@@ -2,9 +2,10 @@
 let AMP_MIN = 0.03;
 let AMP_MED = 0.15;
 let AMP_MAX = 0.7;
-/*
 let FREC_MIN = 125;
-let FREC_MAX = 270; */
+let FREC_MED = 200;
+let FREC_MAX = 270;
+
 //----AUDIO----
 let mic; 
 let amp = 0;
@@ -43,6 +44,7 @@ function setup() {
   userStartAudio(); // forzar el inicio del audio en el navegador
   mic = new p5.AudioIn();
   mic.start();
+
 }
 
 function draw() {
@@ -61,11 +63,11 @@ function draw() {
   amp = mic.getLevel(); // Actualización de la amplitud del micrófono
 
   if (SonidoGrave && cambioContadorR <= 0 && !SonidoAgudo) { //verifica si hay un sonido grave y si el contador de cambio para imagenesrObj es menor o igual a 0. También se asegura de que no haya un sonido agudo en ese momento para evitar que ambas condiciones se cumplan al mismo tiempo.
-    imagenesnObj.mover();
+    imagenesrObj.mover();
     cambioContadorR = cambioIntervalo;
   } else if (SonidoAgudo && cambioContadorN <= 0 && !SonidoGrave) {
     if (mostrarImagenesn1) {
-      imagenesrObj.mover();
+      imagenesnObj.mover();
       if (imagenesnObj.num === 0) { //cambia a imagenesn2 cuando imagenesn1 termina
         mostrarImagenesn1 = false;
       }
