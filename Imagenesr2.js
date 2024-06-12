@@ -1,4 +1,4 @@
-class Imagenesr1 {
+class Imagenesr2 {
   constructor(xr, yr, anr, alr) {
     this.xr = xr;
     this.yr = yr;
@@ -13,7 +13,7 @@ class Imagenesr1 {
   dibujar() {
     this.opCambio = lerp(this.opCambio, 1, 0.1); // Uso de lerp para suavizar el cambio de opacidad
     tint(255, this.op * this.opCambio);
-    image(imagenesr[this.num], this.xr, this.yr, this.anr, this.alr);
+    image(imagenesr2[this.num], this.xr, this.yr, this.anr, this.alr);
     noTint();
   }  
   

@@ -15,7 +15,7 @@ let sonido;
 let imagenesn = [];
 let imagenesr = [];
 let imagenesn2 = [];
-let anchosRojas = [50, 60, 70, 100, 140, 180, 240, 260, 280];
+
 
 //-----------
 // Temporizadores para controlar la velocidad de cambio
@@ -25,21 +25,24 @@ let cambioContadorR = 0;
 let mostrarImagenesn1 = true; // Para alternar entre imagenesn1 e imagenesn2
 
 function preload() {
+  for (let i = 0; i < 43; i++) {
+    imagenesn[i] = loadImage("data/obra/obra" + i + ".png");
+  }
   for (let i = 0; i < 35; i++) {
-    imagenesn[i] = loadImage("data/sprites-obra" + i + ".png");
+    imagenesr[i] = loadImage("data/obra/oobra" + i + ".png");
   }
-  for (let i = 0; i < 9; i++) {
-    imagenesr[i] = loadImage("data/roja" + i + ".png");
+  for (let i = 0; i < 48; i++) {
+    imagenesn2[i] = loadImage("data/obraa/obraa" + i + ".png");
   }
-  for (let i = 0; i < 37; i++) {
-    imagenesn2[i] = loadImage("data/obraa" + i + ".png");
+  for (let i = 0; i < 45; i++) {
+    imagenesr2[i] = loadImage("data/obraa/linea" + i + ".png");
   }
 }
 
 function setup() {
-  createCanvas(500, 600);
-  imagenesnObj = new Imagenesn1(0, 0, width, 600, 0);
-  imagenesrObj = new Imagenesr1(100, 470, anchosRojas[0], 60);
+  createCanvas(400, 580);
+  imagenesnObj = new Imagenesn1(0, -100, width, 600, 0);
+  imagenesrObj = new Imagenesr1(0, 470, width, 200);
   imagenesn2Obj = new Imagenesn2(0, 0, width, 600, 0);
   userStartAudio(); // forzar el inicio del audio en el navegador
   mic = new p5.AudioIn();
