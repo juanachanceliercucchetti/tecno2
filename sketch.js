@@ -1,13 +1,14 @@
 //---- CALIBRACION----
 let AMP_MIN = 0.03;
 let AMP_MED = 0.15;
-let AMP_MAX = 0.8;
+let AMP_MAX = 0.7;
 /*
 let FREC_MIN = 125;
 let FREC_MAX = 270; */
 //----AUDIO----
 let mic; 
 let amp = 0;
+let frec;
 let sonido;
 //----
 let imagenesn = [];
