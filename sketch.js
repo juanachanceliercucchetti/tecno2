@@ -39,11 +39,11 @@ function preload() {
 function setup() {
   createCanvas(500, 600);
   
-  // inicializar aleatoriamente las obras
+  // Inicializar aleatoriamente los valores de mostrarImagenesn1 y mostrarImagenesr1
   mostrarImagenesn1 = random() < 0.5;
   mostrarImagenesr1 = random() < 0.5;
   
-  // crear los objetos de imágenes basado en la inicialización aleatoria
+  // Crear los objetos de imágenes basado en la inicialización aleatoria
   if (mostrarImagenesn1) {
     imagenesnObj = new Imagenesn1(0, -100, width, 600, 0);
   } else {
@@ -51,9 +51,9 @@ function setup() {
   }
 
   if (mostrarImagenesr1) {
-    imagenesrObj = new Imagenesr1(30, 100, width, 450, 0);
+    imagenesrObj = new Imagenesr1(0, 0, width, 600, 0);
   } else {
-    imagenesr2Obj = new Imagenesr2(50, 100, width, 400, 0);
+    imagenesr2Obj = new Imagenesr2(0, 0, width, 600, 0);
   }
   
   userStartAudio(); // Forzar el inicio del audio en el navegador
@@ -100,13 +100,13 @@ function draw() {
       imagenesnObj.mover();
       if (imagenesnObj.num === 0) {
         mostrarImagenesn1 = false;
-        imagenesn2Obj = new Imagenesn2(0, 0, width, 600, 0); // Inicializa la otra secuencia
+        imagenesn2Obj = new Imagenesn2(0, -100, width, 600, 0); // Inicializa la otra secuencia
       }
     } else {
       imagenesn2Obj.mover();
       if (imagenesn2Obj.num === 0) {
         mostrarImagenesn1 = true;
-        imagenesnObj = new Imagenesn1(0, 0, width, 600, 0); // Inicializa la otra secuencia
+        imagenesnObj = new Imagenesn1(0, -100, width, 600, 0); // Inicializa la otra secuencia
       }
     }
     cambioContadorN = cambioIntervalo;
@@ -142,6 +142,6 @@ function draw() {
     }
   }
 
-  let texto = 'amplitud ' + amp;
-  text(texto, 370, 100);
+  //let texto = 'amplitud ' + amp;
+  //text(texto, 370, 100);
 }
