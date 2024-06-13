@@ -7,7 +7,7 @@ let AMP_MAX = 0.7;
 let mic; 
 let amp = 0;
 let sonido;
-//----
+
 let imagenesn = [];
 let imagenesr = [];
 let imagenesn2 = [];
@@ -18,9 +18,8 @@ let imagenesr2 = [];
 let cambioIntervalo = 15; // Cambiar imagen cada 15 cuadros
 let cambioContadorN = 0;
 let cambioContadorR = 0;
-let mostrarImagenesn1 = true; // Para alternar entre imagenesn1 e imagenesn2
-let mostrarImagenesr1 = true;
-
+let mostrarImagenesn1; // Para alternar entre imagenesn1 e imagenesn2
+let mostrarImagenesr1;
 
 function preload() {
   for (let i = 0; i < 43; i++) {
@@ -38,16 +37,28 @@ function preload() {
 }
 
 function setup() {
-  
   createCanvas(500, 600);
-  imagenesnObj = new Imagenesn1(0, 0, width, 600, 0);
-  imagenesrObj = new Imagenesr1(0, 0, width, 600, 0);
-  imagenesn2Obj = new Imagenesn2(0, 0, width, 600, 0);
-  imagenesr2Obj = new Imagenesr2(0, 0, width, 600, 0);
-  userStartAudio(); // forzar el inicio del audio en el navegador
+  
+  // inicializar aleatoriamente las obras
+  mostrarImagenesn1 = random() < 0.5;
+  mostrarImagenesr1 = random() < 0.5;
+  
+  // crear los objetos de imágenes basado en la inicialización aleatoria
+  if (mostrarImagenesn1) {
+    imagenesnObj = new Imagenesn1(0, -100, width, 600, 0);
+  } else {
+    imagenesn2Obj = new Imagenesn2(0, -100, width, 600, 0);
+  }
+
+  if (mostrarImagenesr1) {
+    imagenesrObj = new Imagenesr1(30, 100, width, 450, 0);
+  } else {
+    imagenesr2Obj = new Imagenesr2(50, 100, width, 400, 0);
+  }
+  
+  userStartAudio(); // Forzar el inicio del audio en el navegador
   mic = new p5.AudioIn();
   mic.start();
-  
 }
 
 function draw() {
@@ -65,20 +76,22 @@ function draw() {
   }
 
   amp = mic.getLevel(); // Actualización de la amplitud del micrófono
-  SonidoGrave = amp > AMP_MIN && amp < AMP_MED;
-  SonidoAgudo = amp < AMP_MAX && amp > AMP_MED;
-  sonido = amp > AMP_MIN;
+  let SonidoGrave = amp > AMP_MIN && amp < AMP_MED;
+  let SonidoAgudo = amp < AMP_MAX && amp > AMP_MED;
+  let sonido = amp > AMP_MIN;
 
   if (SonidoGrave && cambioContadorR <= 0 && !SonidoAgudo) {
     if (mostrarImagenesr1) {
       imagenesrObj.mover();
       if (imagenesrObj.num === 0) {
         mostrarImagenesr1 = false;
+        imagenesr2Obj = new Imagenesr2(0, 0, width, 600, 0); // Inicializa la otra secuencia
       }
     } else {
       imagenesr2Obj.mover();
       if (imagenesr2Obj.num === 0) {
         mostrarImagenesr1 = true;
+        imagenesrObj = new Imagenesr1(0, 0, width, 600, 0); // Inicializa la otra secuencia
       }
     }
     cambioContadorR = cambioIntervalo;
@@ -87,11 +100,13 @@ function draw() {
       imagenesnObj.mover();
       if (imagenesnObj.num === 0) {
         mostrarImagenesn1 = false;
+        imagenesn2Obj = new Imagenesn2(0, 0, width, 600, 0); // Inicializa la otra secuencia
       }
     } else {
       imagenesn2Obj.mover();
       if (imagenesn2Obj.num === 0) {
         mostrarImagenesn1 = true;
+        imagenesnObj = new Imagenesn1(0, 0, width, 600, 0); // Inicializa la otra secuencia
       }
     }
     cambioContadorN = cambioIntervalo;
