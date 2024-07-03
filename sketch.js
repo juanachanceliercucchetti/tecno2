@@ -145,3 +145,23 @@ function draw() {
   //let texto = 'amplitud ' + amp;
   //text(texto, 370, 100);
 }
+
+function cambiarClaseImagenesn() {
+  if (mostrarImagenesn1) {
+    mostrarImagenesn1 = false;
+    imagenesn2Obj = new Imagenesn2(0, -100, width, 600, 0); // Inicializa la otra secuencia
+  } else {
+    mostrarImagenesn1 = true;
+    imagenesnObj = new Imagenesn1(0, -100, width, 600, 0); // Inicializa la otra secuencia
+  }
+}
+
+function cambiarClaseImagenesr() {
+  if (mostrarImagenesr1) {
+    mostrarImagenesr1 = false;
+    imagenesr2Obj = new Imagenesr2(0, 0, width, 600, 0); // Inicializa la otra secuencia
+  } else {
+    mostrarImagenesr1 = true;
+    imagenesrObj = new Imagenesr1(0, 0, width, 600, 0); // Inicializa la otra secuencia
+  }
+}

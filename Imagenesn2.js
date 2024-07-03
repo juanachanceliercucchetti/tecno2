@@ -31,6 +31,9 @@ class Imagenesn2 {
   }
 
   opacidadBaja() {
-    this.op = max(this.op - 5, 0);
+    this.op = max(this.op - 1, 0);
+    if (this.op === 0) {
+      cambiarClaseImagenesn();
+    }
   }
 }
