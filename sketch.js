@@ -12,7 +12,7 @@ let imagenesn = [];
 let imagenesr = [];
 let imagenesn2 = [];
 let imagenesr2 = [];
-
+let imagenesr3= [];
 //-----------
 // Temporizadores para controlar la velocidad de cambio
 let cambioIntervalo = 15; // Cambiar imagen cada 15 cuadros
@@ -34,6 +34,7 @@ function preload() {
   for (let i = 0; i < 45; i++) {
     imagenesr2[i] = loadImage("data/linea" + i + ".png");
   }
+  
 }
 
 function setup() {
