@@ -12,14 +12,23 @@ let imagenesn = [];
 let imagenesr = [];
 let imagenesn2 = [];
 let imagenesr2 = [];
-let imagenesr3= [];
+let imagenesr3 = [];
 //-----------
+let imagenesnObj;
+let imagenesrObj;
+let imagenesn2Obj;
+let imagenesr2Obj;
+let imagenesr3Obj;
+
 // Temporizadores para controlar la velocidad de cambio
 let cambioIntervalo = 15; // Cambiar imagen cada 15 cuadros
 let cambioContadorN = 0;
 let cambioContadorR = 0;
 let mostrarImagenesn1; // Para alternar entre imagenesn1 e imagenesn2
 let mostrarImagenesr1;
+let mostrarImagenesr2;
+let mostrarImagenesr3;
+
 
 function preload() {
   for (let i = 0; i < 43; i++) {
@@ -34,7 +43,9 @@ function preload() {
   for (let i = 0; i < 45; i++) {
     imagenesr2[i] = loadImage("data/linea" + i + ".png");
   }
-  
+  for (let i = 0; i < 35; i++) {
+    imagenesr3[i] = loadImage("data/lineaaa" + i + ".png");
+  }
 }
 
 function setup() {
@@ -43,7 +54,9 @@ function setup() {
   // Inicializar aleatoriamente los valores de mostrarImagenesn1 y mostrarImagenesr1
   mostrarImagenesn1 = random() < 0.5;
   mostrarImagenesr1 = random() < 0.5;
-  
+  mostrarImagenesr2 = !mostrarImagenesr1 && random() < 0.5;
+  mostrarImagenesr3 = !mostrarImagenesr1 && !mostrarImagenesr2;
+
   // Crear los objetos de imágenes basado en la inicialización aleatoria
   if (mostrarImagenesn1) {
     imagenesnObj = new Imagenesn1(0, -100, width, 600, 0);
@@ -53,10 +66,12 @@ function setup() {
 
   if (mostrarImagenesr1) {
     imagenesrObj = new Imagenesr1(0, 0, width, 600, 0);
-  } else {
+  } else if (mostrarImagenesr2) {
     imagenesr2Obj = new Imagenesr2(0, 0, width, 600, 0);
+  } else {
+    imagenesr3Obj = new Imagenesr3(0, 0, width, 600, 0);
   }
-  
+
   userStartAudio(); // Forzar el inicio del audio en el navegador
   mic = new p5.AudioIn();
   mic.start();
@@ -70,10 +85,13 @@ function draw() {
   } else {
     imagenesn2Obj.dibujar();
   }
+
   if (mostrarImagenesr1) {
     imagenesrObj.dibujar();
-  } else {
+  } else if (mostrarImagenesr2) {
     imagenesr2Obj.dibujar();
+  } else if (mostrarImagenesr3) {
+    imagenesr3Obj.dibujar();
   }
 
   amp = mic.getLevel(); // Actualización de la amplitud del micrófono
@@ -86,13 +104,22 @@ function draw() {
       imagenesrObj.mover();
       if (imagenesrObj.num === 0) {
         mostrarImagenesr1 = false;
-        imagenesr2Obj = new Imagenesr2(0, 0, width, 600, 0); // Inicializa la otra secuencia
+        mostrarImagenesr2 = true;
+        imagenesr2Obj = new Imagenesr2(0, 0, width, 600, 0); // Inicializa la siguiente secuencia
       }
-    } else {
+    } else if (mostrarImagenesr2) {
       imagenesr2Obj.mover();
       if (imagenesr2Obj.num === 0) {
+        mostrarImagenesr2 = false;
+        mostrarImagenesr3 = true;
+        imagenesr3Obj = new Imagenesr3(0, 0, width, 600, 0); // Inicializa la siguiente secuencia
+      }
+    } else if (mostrarImagenesr3) {
+      imagenesr3Obj.mover();
+      if (imagenesr3Obj.num === 0) {
+        mostrarImagenesr3 = false;
         mostrarImagenesr1 = true;
-        imagenesrObj = new Imagenesr1(0, 0, width, 600, 0); // Inicializa la otra secuencia
+        imagenesrObj = new Imagenesr1(0, 0, width, 600, 0); // Reinicia la primera secuencia
       }
     }
     cambioContadorR = cambioIntervalo;
@@ -120,8 +147,10 @@ function draw() {
   if (sonido) {
     if (mostrarImagenesr1) {
       imagenesrObj.opacidadAlta();
-    } else {
+    } else if (mostrarImagenesr2) {
       imagenesr2Obj.opacidadAlta();
+    } else if (mostrarImagenesr3) {
+      imagenesr3Obj.opacidadAlta();
     }
 
     if (mostrarImagenesn1) {
@@ -132,8 +161,10 @@ function draw() {
   } else {
     if (mostrarImagenesr1) {
       imagenesrObj.opacidadBaja();
-    } else {
+    } else if (mostrarImagenesr2) {
       imagenesr2Obj.opacidadBaja();
+    } else if (mostrarImagenesr3) {
+      imagenesr3Obj.opacidadBaja();
     }
 
     if (mostrarImagenesn1) {
@@ -142,10 +173,8 @@ function draw() {
       imagenesn2Obj.opacidadBaja();
     }
   }
-
-  //let texto = 'amplitud ' + amp;
-  //text(texto, 370, 100);
 }
+
 
 function cambiarClaseImagenesn() {
   if (mostrarImagenesn1) {
@@ -160,9 +189,15 @@ function cambiarClaseImagenesn() {
 function cambiarClaseImagenesr() {
   if (mostrarImagenesr1) {
     mostrarImagenesr1 = false;
-    imagenesr2Obj = new Imagenesr2(0, 0, width, 600, 0); // Inicializa la otra secuencia
+    mostrarImagenesr2 = true;
+    imagenesr2Obj = new Imagenesr2(0, 0, width, 600, 0); // Inicializa la siguiente secuencia
+  } else if (mostrarImagenesr2) {
+    mostrarImagenesr2 = false;
+    mostrarImagenesr3 = true;
+    imagenesr3Obj = new Imagenesr3(0, 0, width, 600, 0); // Inicializa la siguiente secuencia
   } else {
+    mostrarImagenesr3 = false;
     mostrarImagenesr1 = true;
-    imagenesrObj = new Imagenesr1(0, 0, width, 600, 0); // Inicializa la otra secuencia
+    imagenesrObj = new Imagenesr1(0, 0, width, 600, 0); // Reinicia la primera secuencia
   }
 }
